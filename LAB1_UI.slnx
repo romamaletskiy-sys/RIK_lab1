@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="WinForms/WinForms.csproj" Id="00d95a33-84e6-4de1-81dc-acf8dfcf2b54" />
+  <Project Path="WPF/WPF.vbproj" Id="0de5f800-dbf9-49b8-abfd-b1c01f10aa6e" />
+</Solution>
