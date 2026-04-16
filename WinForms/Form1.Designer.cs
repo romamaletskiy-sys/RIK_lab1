@@ -81,9 +81,32 @@
                 pnlContent.Controls.Add(txt);
             }
 
-            AddRow(lblName,     txtName     = new TextBox(), "Name:",             30);
-            AddRow(lblAge,      txtAge      = new TextBox(), "Age:",              80);
-            AddRow(lblLanguage, txtLanguage = new TextBox(), "Favorite Language:", 130);
+            AddRow(lblName,     txtName = new TextBox(), "Name:",             30);
+            AddRow(lblAge,      txtAge  = new TextBox(), "Age:",              80);
+
+            // ── Language ComboBox ──────────────────────────────────────
+            lblLanguage.Text      = "Favorite Language:";
+            lblLanguage.Font      = labelFont;
+            lblLanguage.ForeColor = labelColor;
+            lblLanguage.AutoSize  = true;
+            lblLanguage.Location  = new Point(30, 133);
+
+            cboLanguage = new ComboBox();
+            cboLanguage.Font = inputFont;
+            cboLanguage.Location = new Point(200, 130);
+            cboLanguage.Width = 210;
+            cboLanguage.DropDownStyle = ComboBoxStyle.DropDown;
+            cboLanguage.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboLanguage.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cboLanguage.Items.AddRange(new string[]
+            {
+                "C#", "Visual Basic .NET", "C++", "C", "Java", "Python",
+                "JavaScript", "TypeScript", "Go", "Rust", "PHP", "Ruby",
+                "Swift", "Kotlin", "Dart", "F#", "Scala", "R", "MATLAB", "SQL"
+            });
+
+            pnlContent.Controls.Add(lblLanguage);
+            pnlContent.Controls.Add(cboLanguage);
 
             // ── Submit button ─────────────────────────────────────────
             btnSubmit.Text      = "Submit";
@@ -126,6 +149,6 @@
 
         private TextBox txtName;
         private TextBox txtAge;
-        private TextBox txtLanguage;
+        private ComboBox cboLanguage;
     }
 }

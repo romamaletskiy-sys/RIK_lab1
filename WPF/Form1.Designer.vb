@@ -24,14 +24,14 @@ Partial Class Form1
     Private Sub InitializeComponent()
         components = New System.ComponentModel.Container()
 
-        Dim pnlHeader   As New Panel()
-        Dim lblTitle    As New Label()
-        Dim pnlContent  As New Panel()
-        Dim lblName     As New Label()
-        Dim lblAge      As New Label()
+        Dim pnlHeader As New Panel()
+        Dim lblTitle As New Label()
+        Dim pnlContent As New Panel()
+        Dim lblName As New Label()
+        Dim lblAge As New Label()
         Dim lblLanguage As New Label()
-        Dim btnSubmit   As New Button()
-        Dim lblFooter   As New Label()
+        Dim btnSubmit As New Button()
+        Dim lblFooter As New Label()
 
         Me.SuspendLayout()
 
@@ -84,19 +84,25 @@ Partial Class Form1
         Me.txtAge.BorderStyle = BorderStyle.FixedSingle
         Me.txtAge.BackColor = Color.White
 
-        ' Language row
+        ' Language ComboBox
         lblLanguage.Text = "Favorite Language:"
         lblLanguage.Font = labelFont
         lblLanguage.ForeColor = labelColor
         lblLanguage.AutoSize = True
         lblLanguage.Location = New Point(30, 133)
 
-        Me.txtLanguage = New TextBox()
-        Me.txtLanguage.Font = inputFont
-        Me.txtLanguage.Location = New Point(200, 130)
-        Me.txtLanguage.Width = 210
-        Me.txtLanguage.BorderStyle = BorderStyle.FixedSingle
-        Me.txtLanguage.BackColor = Color.White
+        Me.cboLanguage = New ComboBox()
+        Me.cboLanguage.Font = inputFont
+        Me.cboLanguage.Location = New Point(200, 130)
+        Me.cboLanguage.Width = 210
+        Me.cboLanguage.DropDownStyle = ComboBoxStyle.DropDown
+        Me.cboLanguage.AutoCompleteMode = AutoCompleteMode.SuggestAppend
+        Me.cboLanguage.AutoCompleteSource = AutoCompleteSource.ListItems
+        Me.cboLanguage.Items.AddRange(New String() {
+            "C#", "Visual Basic .NET", "C++", "C", "Java", "Python",
+            "JavaScript", "TypeScript", "Go", "Rust", "PHP", "Ruby",
+            "Swift", "Kotlin", "Dart", "F#", "Scala", "R", "MATLAB", "SQL"
+        })
 
         ' ── Submit button ─────────────────────────────────────────
         btnSubmit.Text = "Submit"
@@ -122,7 +128,7 @@ Partial Class Form1
         pnlContent.Controls.Add(lblAge)
         pnlContent.Controls.Add(Me.txtAge)
         pnlContent.Controls.Add(lblLanguage)
-        pnlContent.Controls.Add(Me.txtLanguage)
+        pnlContent.Controls.Add(Me.cboLanguage)
         pnlContent.Controls.Add(btnSubmit)
         pnlContent.Controls.Add(lblFooter)
 
@@ -142,8 +148,8 @@ Partial Class Form1
         Me.PerformLayout()
     End Sub
 
-    Private WithEvents txtName As TextBox
-    Private WithEvents txtAge As TextBox
-    Private WithEvents txtLanguage As TextBox
+    Private WithEvents txtName     As TextBox
+    Private WithEvents txtAge      As TextBox
+    Private WithEvents cboLanguage As ComboBox
 
 End Class
