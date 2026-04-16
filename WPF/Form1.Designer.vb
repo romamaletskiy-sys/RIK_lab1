@@ -24,60 +24,119 @@ Partial Class Form1
     Private Sub InitializeComponent()
         components = New System.ComponentModel.Container()
 
-        Dim lblName As New Label()
-        Dim lblAge As New Label()
+        Dim pnlHeader   As New Panel()
+        Dim lblTitle    As New Label()
+        Dim pnlContent  As New Panel()
+        Dim lblName     As New Label()
+        Dim lblAge      As New Label()
         Dim lblLanguage As New Label()
-        Dim btnSubmit As New Button()
-        Dim lblFooter As New Label()
+        Dim btnSubmit   As New Button()
+        Dim lblFooter   As New Label()
 
         Me.SuspendLayout()
 
-        lblName.AutoSize = True
-        lblName.Location = New Point(30, 30)
+        ' ── Header panel ──────────────────────────────────────────
+        pnlHeader.Dock = DockStyle.Top
+        pnlHeader.Height = 60
+        pnlHeader.BackColor = Color.FromArgb(37, 99, 235)
+
+        lblTitle.Text = "📋  Survey Form"
+        lblTitle.Font = New Font("Segoe UI", 16, FontStyle.Bold)
+        lblTitle.ForeColor = Color.White
+        lblTitle.AutoSize = True
+        lblTitle.Location = New Point(16, 14)
+        pnlHeader.Controls.Add(lblTitle)
+
+        ' ── Content panel ─────────────────────────────────────────
+        pnlContent.Location = New Point(0, 60)
+        pnlContent.Size = New Size(460, 260)
+        pnlContent.BackColor = Color.FromArgb(245, 247, 250)
+
+        Dim labelFont As New Font("Segoe UI", 10, FontStyle.Regular)
+        Dim inputFont As New Font("Segoe UI", 10)
+        Dim labelColor As Color = Color.FromArgb(55, 65, 81)
+
+        ' Name row
         lblName.Text = "Name:"
+        lblName.Font = labelFont
+        lblName.ForeColor = labelColor
+        lblName.AutoSize = True
+        lblName.Location = New Point(30, 33)
 
         Me.txtName = New TextBox()
-        Me.txtName.Location = New Point(200, 27)
-        Me.txtName.Width = 180
+        Me.txtName.Font = inputFont
+        Me.txtName.Location = New Point(200, 30)
+        Me.txtName.Width = 210
+        Me.txtName.BorderStyle = BorderStyle.FixedSingle
+        Me.txtName.BackColor = Color.White
 
-        lblAge.AutoSize = True
-        lblAge.Location = New Point(30, 70)
+        ' Age row
         lblAge.Text = "Age:"
+        lblAge.Font = labelFont
+        lblAge.ForeColor = labelColor
+        lblAge.AutoSize = True
+        lblAge.Location = New Point(30, 83)
 
         Me.txtAge = New TextBox()
-        Me.txtAge.Location = New Point(200, 67)
-        Me.txtAge.Width = 180
+        Me.txtAge.Font = inputFont
+        Me.txtAge.Location = New Point(200, 80)
+        Me.txtAge.Width = 210
+        Me.txtAge.BorderStyle = BorderStyle.FixedSingle
+        Me.txtAge.BackColor = Color.White
 
-        lblLanguage.AutoSize = True
-        lblLanguage.Location = New Point(30, 110)
+        ' Language row
         lblLanguage.Text = "Favorite Language:"
+        lblLanguage.Font = labelFont
+        lblLanguage.ForeColor = labelColor
+        lblLanguage.AutoSize = True
+        lblLanguage.Location = New Point(30, 133)
 
         Me.txtLanguage = New TextBox()
-        Me.txtLanguage.Location = New Point(200, 107)
-        Me.txtLanguage.Width = 180
+        Me.txtLanguage.Font = inputFont
+        Me.txtLanguage.Location = New Point(200, 130)
+        Me.txtLanguage.Width = 210
+        Me.txtLanguage.BorderStyle = BorderStyle.FixedSingle
+        Me.txtLanguage.BackColor = Color.White
 
-        btnSubmit.Location = New Point(160, 160)
+        ' ── Submit button ─────────────────────────────────────────
         btnSubmit.Text = "Submit"
-        btnSubmit.Width = 100
-        btnSubmit.Height = 35
+        btnSubmit.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+        btnSubmit.ForeColor = Color.White
+        btnSubmit.BackColor = Color.FromArgb(37, 99, 235)
+        btnSubmit.FlatStyle = FlatStyle.Flat
+        btnSubmit.FlatAppearance.BorderSize = 0
+        btnSubmit.Size = New Size(120, 38)
+        btnSubmit.Location = New Point(170, 185)
+        btnSubmit.Cursor = Cursors.Hand
         AddHandler btnSubmit.Click, AddressOf BtnSubmit_Click
 
-        lblFooter.AutoSize = True
-        lblFooter.Location = New Point(190, 270)
+        ' ── Footer label ──────────────────────────────────────────
         lblFooter.Text = "WPF"
-        lblFooter.Font = New Font("Arial", 10, FontStyle.Bold)
+        lblFooter.Font = New Font("Segoe UI", 8, FontStyle.Italic)
+        lblFooter.ForeColor = Color.FromArgb(156, 163, 175)
+        lblFooter.AutoSize = True
+        lblFooter.Location = New Point(210, 237)
 
+        pnlContent.Controls.Add(lblName)
+        pnlContent.Controls.Add(Me.txtName)
+        pnlContent.Controls.Add(lblAge)
+        pnlContent.Controls.Add(Me.txtAge)
+        pnlContent.Controls.Add(lblLanguage)
+        pnlContent.Controls.Add(Me.txtLanguage)
+        pnlContent.Controls.Add(btnSubmit)
+        pnlContent.Controls.Add(lblFooter)
+
+        ' ── Form ──────────────────────────────────────────────────
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(420, 300)
+        ClientSize = New Size(460, 320)
+        BackColor = Color.FromArgb(245, 247, 250)
         Text = "Survey Form"
-        Controls.Add(lblName)
-        Controls.Add(Me.txtName)
-        Controls.Add(lblAge)
-        Controls.Add(Me.txtAge)
-        Controls.Add(lblLanguage)
-        Controls.Add(Me.txtLanguage)
-        Controls.Add(btnSubmit)
-        Controls.Add(lblFooter)
+        StartPosition = FormStartPosition.CenterScreen
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        MaximizeBox = False
+
+        Controls.Add(pnlContent)
+        Controls.Add(pnlHeader)
 
         Me.ResumeLayout(False)
         Me.PerformLayout()

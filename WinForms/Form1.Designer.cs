@@ -30,60 +30,93 @@
         {
             components = new System.ComponentModel.Container();
 
-            Label lblName = new Label();
-            Label lblAge = new Label();
-            Label lblLanguage = new Label();
-            Button btnSubmit = new Button();
-            Label lblFooter = new Label();
+            Panel pnlHeader    = new Panel();
+            Label lblTitle     = new Label();
+            Panel pnlContent   = new Panel();
+            Label lblName      = new Label();
+            Label lblAge       = new Label();
+            Label lblLanguage  = new Label();
+            Button btnSubmit   = new Button();
+            Label lblFooter    = new Label();
 
             SuspendLayout();
 
-            lblName.AutoSize = true;
-            lblName.Location = new Point(30, 30);
-            lblName.Text = "Name:";
+            // ── Header panel ──────────────────────────────────────────
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 60;
+            pnlHeader.BackColor = Color.FromArgb(37, 99, 235);   // blue-600
 
-            txtName = new TextBox();
-            txtName.Location = new Point(200, 27);
-            txtName.Width = 180;
+            lblTitle.Text = "📋  Survey Form";
+            lblTitle.Font = new Font("Segoe UI", 16, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.AutoSize = true;
+            lblTitle.Location = new Point(16, 14);
+            pnlHeader.Controls.Add(lblTitle);
 
-            lblAge.AutoSize = true;
-            lblAge.Location = new Point(30, 70);
-            lblAge.Text = "Age:";
+            // ── Content panel ─────────────────────────────────────────
+            pnlContent.Location = new Point(0, 60);
+            pnlContent.Size = new Size(460, 260);
+            pnlContent.BackColor = Color.FromArgb(245, 247, 250);
 
-            txtAge = new TextBox();
-            txtAge.Location = new Point(200, 67);
-            txtAge.Width = 180;
+            Font labelFont   = new Font("Segoe UI", 10, FontStyle.Regular);
+            Font inputFont   = new Font("Segoe UI", 10);
+            Color labelColor = Color.FromArgb(55, 65, 81);
 
-            lblLanguage.AutoSize = true;
-            lblLanguage.Location = new Point(30, 110);
-            lblLanguage.Text = "Favorite Language:";
+            void AddRow(Label lbl, TextBox txt, string text, int y)
+            {
+                lbl.Text      = text;
+                lbl.Font      = labelFont;
+                lbl.ForeColor = labelColor;
+                lbl.AutoSize  = true;
+                lbl.Location  = new Point(30, y + 3);
 
-            txtLanguage = new TextBox();
-            txtLanguage.Location = new Point(200, 107);
-            txtLanguage.Width = 180;
+                txt.Font      = inputFont;
+                txt.Location  = new Point(200, y);
+                txt.Width     = 210;
+                txt.Height    = 28;
+                txt.BorderStyle = BorderStyle.FixedSingle;
+                txt.BackColor = Color.White;
 
-            btnSubmit.Location = new Point(160, 160);
-            btnSubmit.Text = "Submit";
-            btnSubmit.Width = 100;
-            btnSubmit.Height = 35;
-            btnSubmit.Click += BtnSubmit_Click;
+                pnlContent.Controls.Add(lbl);
+                pnlContent.Controls.Add(txt);
+            }
 
-            lblFooter.AutoSize = true;
-            lblFooter.Location = new Point(180, 270);
-            lblFooter.Text = "WinForms";
-            lblFooter.Font = new Font("Arial", 10, FontStyle.Bold);
+            AddRow(lblName,     txtName     = new TextBox(), "Name:",             30);
+            AddRow(lblAge,      txtAge      = new TextBox(), "Age:",              80);
+            AddRow(lblLanguage, txtLanguage = new TextBox(), "Favorite Language:", 130);
 
+            // ── Submit button ─────────────────────────────────────────
+            btnSubmit.Text      = "Submit";
+            btnSubmit.Font      = new Font("Segoe UI", 10, FontStyle.Bold);
+            btnSubmit.ForeColor = Color.White;
+            btnSubmit.BackColor = Color.FromArgb(37, 99, 235);
+            btnSubmit.FlatStyle = FlatStyle.Flat;
+            btnSubmit.FlatAppearance.BorderSize = 0;
+            btnSubmit.Size      = new Size(120, 38);
+            btnSubmit.Location  = new Point(170, 185);
+            btnSubmit.Cursor    = Cursors.Hand;
+            btnSubmit.Click    += BtnSubmit_Click;
+            pnlContent.Controls.Add(btnSubmit);
+
+            // ── Footer label ──────────────────────────────────────────
+            lblFooter.Text      = "WinForms";
+            lblFooter.Font      = new Font("Segoe UI", 8, FontStyle.Italic);
+            lblFooter.ForeColor = Color.FromArgb(156, 163, 175);
+            lblFooter.AutoSize  = true;
+            lblFooter.Location  = new Point(190, 237);
+            pnlContent.Controls.Add(lblFooter);
+
+            // ── Form ──────────────────────────────────────────────────
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(420, 300);
-            Text = "Survey Form";
-            Controls.Add(lblName);
-            Controls.Add(txtName);
-            Controls.Add(lblAge);
-            Controls.Add(txtAge);
-            Controls.Add(lblLanguage);
-            Controls.Add(txtLanguage);
-            Controls.Add(btnSubmit);
-            Controls.Add(lblFooter);
+            ClientSize    = new Size(460, 320);
+            BackColor     = Color.FromArgb(245, 247, 250);
+            Text          = "Survey Form";
+            StartPosition = FormStartPosition.CenterScreen;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox   = false;
+
+            Controls.Add(pnlContent);
+            Controls.Add(pnlHeader);
 
             ResumeLayout(false);
             PerformLayout();
