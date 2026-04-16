@@ -38,7 +38,7 @@ Partial Class Form1
         ' ── Header panel ──────────────────────────────────────────
         pnlHeader.Dock = DockStyle.Top
         pnlHeader.Height = 60
-        pnlHeader.BackColor = Color.FromArgb(37, 99, 235)
+        pnlHeader.BackColor = Color.FromArgb(220, 38, 38)
 
         lblTitle.Text = "📋  Survey Form"
         lblTitle.Font = New Font("Segoe UI", 16, FontStyle.Bold)
@@ -102,7 +102,7 @@ Partial Class Form1
         btnSubmit.Text = "Submit"
         btnSubmit.Font = New Font("Segoe UI", 10, FontStyle.Bold)
         btnSubmit.ForeColor = Color.White
-        btnSubmit.BackColor = Color.FromArgb(37, 99, 235)
+        btnSubmit.BackColor = Color.FromArgb(220, 38, 38)
         btnSubmit.FlatStyle = FlatStyle.Flat
         btnSubmit.FlatAppearance.BorderSize = 0
         btnSubmit.Size = New Size(120, 38)
